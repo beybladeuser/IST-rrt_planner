@@ -53,44 +53,60 @@ namespace rrt_planner {
 
     int RRTPlanner::getNearestNodeId(const double *point) {
 
-        /**************************
-         * Implement your code here
-         **************************/
+        double min_dist = std::numeric_limits<double>::max(); // Set a very high initial minimum distance
+        int nearest_node_id = -1;
+
+        // Iterate over all nodes in the tree to find the nearest node
+        for (size_t i = 0; i < nodes_.size(); ++i) {
+            double dist = computeDistance(nodes_[i].pos, point); // Calculate the Euclidean distance between the node and the point
+            if (dist < min_dist) {
+                min_dist = dist;
+                nearest_node_id = i;
+            }
+        }
+
+        return nearest_node_id; // Return the index of the nearest node
 
     }
 
     void RRTPlanner::createNewNode(const double* pos, int parent_node_id) {
 
         Node new_node;
+        new_node.pos[0] = pos[0]; // Set the position of the new node
+        new_node.pos[1] = pos[1];
+        new_node.node_id = nodes_.size(); // Set the node ID as the current size of the node list
+        new_node.parent_id = parent_node_id; // Set the parent ID of the new node
 
-        /**************************
-         * Implement your code here
-         **************************/
-
-        nodes_.emplace_back(new_node);
+        nodes_.emplace_back(new_node); // Add the new node to the list of nodes
         
     }
 
     double* RRTPlanner::sampleRandomPoint() {
 
-        /**************************
-         * Implement your code here
-         **************************/
+        rand_point_[0] = random_double_x(); // Sample a random x coordinate within the allowed range
+        rand_point_[1] = random_double_y(); // Sample a random y coordinate within the allowed range
 
-        rand_point_[0] = // ... ;
-        rand_point_[1] = // ... ;
 
         return rand_point_;
     }
 
     double* RRTPlanner::extendTree(const double* point_nearest, const double* point_rand) {
 
-        /**************************
-         * Implement your code here
-         **************************/
+        double direction[2];
+        double norm;
 
-        candidate_point_[0] = // ... ;
-        candidate_point_[1] = // ... ;
+        // Calculate the direction vector from the nearest node to the random point
+        direction[0] = point_rand[0] - point_nearest[0];
+        direction[1] = point_rand[1] - point_nearest[1];
+
+        // Normalize the direction vector
+        norm = std::sqrt(direction[0] * direction[0] + direction[1] * direction[1]);
+        direction[0] /= norm;
+        direction[1] /= norm;
+
+        // Extend the tree by moving a step size towards the random point in the direction vector
+        candidate_point_[0] = point_nearest[0] + params_.step_size * direction[0];
+        candidate_point_[1] = point_nearest[1] + params_.step_size * direction[1];
 
         return candidate_point_;
     }
