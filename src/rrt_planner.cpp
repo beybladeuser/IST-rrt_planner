@@ -105,8 +105,8 @@ namespace rrt_planner {
         direction[1] /= norm;
 
         // Extend the tree by moving a step size towards the random point in the direction vector
-        candidate_point_[0] = point_nearest[0] + params_.step_size * direction[0];
-        candidate_point_[1] = point_nearest[1] + params_.step_size * direction[1];
+        candidate_point_[0] = point_nearest[0] + params_.step * direction[0];
+        candidate_point_[1] = point_nearest[1] + params_.step * direction[1];
 
         return candidate_point_;
     }
