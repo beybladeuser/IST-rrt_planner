@@ -83,8 +83,8 @@ namespace rrt_planner {
 
     double* RRTPlanner::sampleRandomPoint() {
 
-        rand_point_[0] = random_double_x(); // Sample a random x coordinate within the allowed range
-        rand_point_[1] = random_double_y(); // Sample a random y coordinate within the allowed range
+        rand_point_[0] = random_double_x.generate(); // Sample a random x coordinate within the allowed range
+        rand_point_[1] = random_double_y.generate(); // Sample a random y coordinate within the allowed range
 
 
         return rand_point_;
