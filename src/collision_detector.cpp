@@ -32,7 +32,7 @@ namespace rrt_planner
 
         // Compare the cost to determine if it's in free space
         // Usually, costmap values for free space are below the INSCRIBED_INFLATED_OBSTACLE threshold (default 253).
-        return (cost < costmap_2d::INSCRIBED_INFLATED_OBSTACLE);
+        return (cost < 200);
     }
 
     bool CollisionDetector::obstacleBetween(const double *point_a, const double *point_b)
