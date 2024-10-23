@@ -1,0 +1,12 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="playback_speed" default="5.0" />
+  <arg name="bag_file" default="$(find rrt_planner)/bags/testing_rosbag_recording_small.bag" />
+
+  <!-- Turtlebot3 -->
+  <node pkg="rosbag" type="play" name="rosbag_player"
+            args="-r $(arg playback_speed) --clock $(arg bag_file)" />
+
+  <!-- rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find rrt_planner)/rviz/rrt_turtlebot_sim.rviz"/>
+</launch>
