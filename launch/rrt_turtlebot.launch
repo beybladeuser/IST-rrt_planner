@@ -40,6 +40,10 @@
     <remap from="odom" to="$(arg odom_topic)"/>
   </node>
 
+  <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_draw_path.launch">
+    <arg name="draw_gt" value="false"/>
+  </include>
+
   <!-- rviz -->
   <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find rrt_planner)/rviz/rrt_turtlebot_sim.rviz"/>
 </launch>
