@@ -4,8 +4,8 @@ raytrace_range: 3.5
 footprint: [[-0.205, -0.155], [-0.205, 0.155], [0.077, 0.155], [0.077, -0.155]]
 #robot_radius: 0.17
 
-inflation_radius: 0.5
-cost_scaling_factor: 1.2
+inflation_radius: 0.5 # reduced the radius to allow free space between pins in the gazebo sim, default was 1
+cost_scaling_factor: 1.2 # reduced factor to have a faster cost increase since the radius is smaller, default was 3
 
 map_type: costmap
 observation_sources: scan
