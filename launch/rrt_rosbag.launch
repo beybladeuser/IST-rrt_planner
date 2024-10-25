@@ -1,7 +1,7 @@
 <launch>
   <!-- Arguments -->
   <arg name="playback_speed" default="5.0" />
-  <arg name="bag_file" default="$(find rrt_planner)/bags/testing_rosbag_recording_small.bag" />
+  <arg name="bag_file" default="$(find rrt_planner)/bags/rosbag_recording_lab_correct_path.bag" />
 
   <!-- Turtlebot3 -->
   <node pkg="rosbag" type="play" name="rosbag_player"
